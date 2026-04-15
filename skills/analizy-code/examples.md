@@ -1,16 +1,21 @@
 # 示例：与 `SKILL.md` 输出结构对齐的写法
 
-> 本文件演示 **`SKILL.md` 当前「输出结构」**（1 入口与入参 → 2 出参与变更与依赖 → 3 流程 → 4 实体清单与关系 → 5 用例 → **6 横切收尾**）的**章节标题、表格用法与图文配合方式**。  
+> 本文件演示 **`SKILL.md` 当前「输出结构」**（**0 代码概要** → 1 入口与入参 → 2 出参与变更与依赖 → 3 流程 → 4 实体清单与关系 → 5 用例 → **6 横切收尾**）的**章节标题、表格用法与图文配合方式**。  
 > 实际分析须以仓库代码为准；**完整、可落地的长文范例**见仓库内落盘稿（与技能一次完整执行结果同级）：
 >
 > - [`ai_docs/26041301-genTongAuthCode-AuthController入口解读.md`](../../../ai_docs/26041301-genTongAuthCode-AuthController入口解读.md) — **HTTP 接口**（`AuthController.genTongAuthCode`）
 > - [`ai_docs/26041302-calOneHospitalRunStatus-QualityControlManager入口解读.md`](../../../ai_docs/26041302-calOneHospitalRunStatus-QualityControlManager入口解读.md) — **非 HTTP 业务入口**（`QualityControlManager.calOneHospitalRunStatus`）
 
-下文为**压缩版示范**：保留六章骨架与关键写法；流程图规则（何时画、父子流程、Mermaid 边标签写法等）以 `SKILL.md` **§3.3** 为准；实体小节细则以 **§4** 表格为准。
+下文为**压缩版示范**：保留 **§0 + 后续六章** 骨架与关键写法；流程图规则（何时画、父子流程、Mermaid 边标签写法等）以 `SKILL.md` **§3.3** 为准；实体小节细则以 **§4** 表格为准。
 
 ---
 
 ## 示例一：`POST /auth/genTongAuthCode`（`AuthController.genTongAuthCode`）
+
+### 0. 代码概要
+
+- **一句话定位**：认证域 HTTP 接口，为院端应用生成通平台授权码并落库。  
+- **价值与边界**：在网关与会话校验通过后，按应用/设备维度生成码并写 `auth_info` 等；不包含前端展示与其它业务域流程。
 
 ### 1. 入口与入参解析
 
@@ -97,6 +102,11 @@ flowchart TD
 
 > **非 HTTP 入口**：无 Controller 路径锚定；§1 中写明「本入口不涉及」HTTP 锚定，并说明典型调用方（如 `AuthServiceImpl` 异步、`LogServiceImpl` 同步等，以代码检索为准）。
 
+### 0. 代码概要
+
+- **一句话定位**：质控域内按设备码驱动、重算单院运行明细的 **Manager 方法入口**（非 HTTP）。  
+- **价值与边界**：先核对/清理授权信息，再按季度游标重算并落库运行明细；批量 HTTP 任务通过 Controller 复用同源逻辑，本方法不直接暴露路由。
+
 ### 1. 入口与入参解析
 
 - **入口**：Spring `@Component` 的 **Manager 方法**，职责：设备码维度 **核对授权信息**（`cleanAuthInfo`）→ 取医院编码列表 → **从固定历史季度到当前默认季度** 重算运行明细。  
@@ -161,6 +171,7 @@ flowchart TD
 
 | `SKILL.md` 章节 | 本文件示范位置 |
 |-----------------|----------------|
+| §0 代码概要 | 两示例开头的「一句话定位 + 价值与边界」（2～5 句级压缩） |
 | §1 入口与入参 | 两示例的「进入条件 / 形态 / 参数逻辑 /（可选）Java 锚定」 |
 | §2 出参与变更 | 两示例的表格：出参、存储读/写、外部依赖读/写判定 |
 | §3 流程 | 3.1 概括与 3.2 链路分离；3.3 配图规则与 Mermaid 兼容 |
