@@ -31,6 +31,21 @@
     - **说明**：在字段逻辑扫描基础上继续下钻，定位关键字段的详细计算链路与依赖关系。
     - **主文档**：[SKILL.md](skills/scan-output-field-logic-drilldown/SKILL.md)、[examples.md](skills/scan-output-field-logic-drilldown/examples.md)
 
+- 数据爬取
+  - LeetCode 刷题文档技能介绍：
+    1. **leetcode-1-download-content** 从 leetcode.cn 抓取原题正文与示例图，生成 `LeetCode/LeetCode{4位题号}/` 下的原题 Markdown，并维护 `leetCode题目.md` 中「题目列表」索引。
+    2. **leetcode-2-analizy-solution** 根据题解截图或题解网页，识别正文与数学公式，梳理为 `题解-LeetCode{题号}-{算法标签}.md`（含思路、LaTeX 公式与 Java 代码）。
+    3. 建议顺序：先抓原题，再写题解；题解文首链接同目录原题文件，并可链到 `算法总结文字/` 下 BFS、DFS、DP 总览。
+  - **leetcode-1-download-content**
+    - **说明**：抓取 LeetCode 中国站原题（题干、示例、提示、图片），题号 4 位补零，落盘 `LeetCode{NNNN}-{中文题名}.md`；图片存 `imgs/`；默认同步 `leetCode题目.md` 题目列表（保留备注与其它章节）。
+    - **主文档**：[SKILL.md](skills/leetcode-1-download-content/SKILL.md)、[reference.md](skills/leetcode-1-download-content/reference.md)、[examples.md](skills/leetcode-1-download-content/examples.md)
+    - **脚本**：[download_leetcode_problem.py](skills/leetcode-1-download-content/scripts/download_leetcode_problem.py)、[update_leetcode_index.py](skills/leetcode-1-download-content/scripts/update_leetcode_index.py)
+
+  - **leetcode-2-analizy-solution**
+    - **说明**：解析题解截图或网页，再叙述为中文题解 Markdown；文件名 `题解-LeetCode{NNNN}-{广度优先|深度优先|动态规划|…}.md`；数学式用 `$...$` / `$$...$$`；同一题多种写法可各写一篇并互链「姊妹题解」。
+    - **主文档**：[SKILL.md](skills/leetcode-2-analizy-solution/SKILL.md)、[reference.md](skills/leetcode-2-analizy-solution/reference.md)、[examples.md](skills/leetcode-2-analizy-solution/examples.md)
+    - **配合关系**：依赖同目录原题 md 时，须先由 **leetcode-1-download-content** 抓取或确认原题已存在。
+
 ### 其它 skills
 
 - **ai-docs-md-naming**
