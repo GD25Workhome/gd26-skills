@@ -1,9 +1,14 @@
 ---
-name: scan-output-field-logic
+name: scan-2-output-field-logic
 description: 分析指定代码入口影响字段（指定具体字段）的计算逻辑。先用简短文字概括该代码在做什么，再产出字段级输入来源、计算逻辑。
 ---
 
 # 分析指定的字段的计算逻辑
+
+## 配合关系（建议顺序）
+
+- 本技能为代码深度分析流程的 **第 2 步**。
+- 建议在 **scan-1-code-analizy-output** 产出基线后使用；L3/L4 复杂字段可交由 **scan-3-output-field-logic-drilldown** 继续下钻。
 
 ## 适用场景
 - 用户提供一个代码入口（Controller/Service 方法等）要求分析其输出字段以及内部变更字段的具体**计算逻辑**

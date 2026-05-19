@@ -13,23 +13,26 @@
 - 代码分析
   - 代码分析技能介绍：
     1. analizy-code 为通用代码扫描接口，大接口受限于模型上下文限制，可能会输出不全
-    2. scan-code-analizy-output、scan-output-field-logic、scan-output-field-logic-drilldown三个技能适合在对代码深度解读时配合在一起使用。建议使用方式为：先用scan-code-analizy-output列举代码做了哪些事情；然后使用scan-output-field-logic技能分析代码的数据变更细节，并标记复杂字段；最后使用scan-output-field-logic-drilldown分析复杂字段的逻辑，进行深度下钻，输出逻辑细节。这三个技能本质上是对analizy-code的分析流程的细化，用更聚焦的提示词，发掘大型接口的内部逻辑
+    2. **scan-1-code-analizy-output**、**scan-2-output-field-logic**、**scan-3-output-field-logic-drilldown** 三个技能适合在对代码深度解读时按顺序配合使用。建议顺序：先用 **scan-1-code-analizy-output** 列举代码做了哪些事情；再用 **scan-2-output-field-logic** 分析数据变更细节并标记复杂字段；最后用 **scan-3-output-field-logic-drilldown** 对复杂字段深度下钻。这三个技能本质上是对 **analizy-code** 分析流程的细化，用更聚焦的提示词发掘大型接口的内部逻辑。
   - **analizy-code**（analyze-code）
     - **说明**：从用户给出的代码入口下钻分析，按固定章节输出中文技术解读（入口与入参、出参与依赖、流程与 Mermaid 图、实体与关系、用例、横切与待确认）；默认将完整解读落盘到 `ai_docs/`，文件名遵循 **ai-docs-md-naming**。
     - **主文档**：[SKILL.md](skills/analizy-code/SKILL.md)、[examples.md](skills/analizy-code/examples.md)
     - **配合关系**：**analizy-code** 在默认落盘且用户未指定路径/文件名时，须按 **[ai-docs-md-naming](skills/ai-docs-md-naming/SKILL.md)** 的规则命名。
 
-  - **scan-code-analizy-output**
-    - **说明**：扫码代码的所有输出。
-    - **主文档**：[SKILL.md](skills/scan-code-analizy-output/SKILL.md)
+  - **scan-1-code-analizy-output**
+    - **说明**：扫码代码的所有输出（深度分析流程第 1 步）。
+    - **主文档**：[SKILL.md](skills/scan-1-code-analizy-output/SKILL.md)
+    - **配合关系**：建议作为 **scan-2-output-field-logic**、**scan-3-output-field-logic-drilldown** 的前置基线。
 
-  - **scan-output-field-logic**
-    - **说明**：面向分析结果中的字段与输出项，快速梳理字段含义、来源与基础流转逻辑。
-    - **主文档**：[SKILL.md](skills/scan-output-field-logic/SKILL.md)
+  - **scan-2-output-field-logic**
+    - **说明**：面向分析结果中的字段与输出项，梳理字段含义、来源与基础计算逻辑（深度分析流程第 2 步）。
+    - **主文档**：[SKILL.md](skills/scan-2-output-field-logic/SKILL.md)
+    - **配合关系**：建议在 **scan-1-code-analizy-output** 之后使用；复杂字段（L3/L4）可交由 **scan-3-output-field-logic-drilldown** 继续下钻。
 
-  - **scan-output-field-logic-drilldown**
-    - **说明**：在字段逻辑扫描基础上继续下钻，定位关键字段的详细计算链路与依赖关系。
-    - **主文档**：[SKILL.md](skills/scan-output-field-logic-drilldown/SKILL.md)、[examples.md](skills/scan-output-field-logic-drilldown/examples.md)
+  - **scan-3-output-field-logic-drilldown**
+    - **说明**：在字段逻辑扫描基础上继续下钻，定位关键字段的详细计算链路与依赖关系（深度分析流程第 3 步）。
+    - **主文档**：[SKILL.md](skills/scan-3-output-field-logic-drilldown/SKILL.md)、[examples.md](skills/scan-3-output-field-logic-drilldown/examples.md)
+    - **配合关系**：须有 **scan-1** / **scan-2** 或等价基线文档后再使用；不适用首次泛泛读代码的场景。
 
 - 数据爬取
   - LeetCode 刷题文档技能介绍：

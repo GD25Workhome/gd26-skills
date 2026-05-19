@@ -1,9 +1,14 @@
 ---
-name: scan-output-field-logic-drilldown
+name: scan-3-output-field-logic-drilldown
 description: 深入分析指定字段（指定代码链路）的计算逻辑，先用简短文字概括该代码在做什么，再使用详细的文字描述、时序图、流程图将字段如何被计算出来的所有细节都描述出来。不适用没有分析基础的、首次分析的场景。
 ---
 
 # 深入分析指定字段的计算逻辑
+
+## 配合关系（建议顺序）
+
+- 本技能为代码深度分析流程的 **第 3 步**。
+- 须在 **scan-1-code-analizy-output** / **scan-2-output-field-logic** 或等价基线文档之后使用。
 
 ## 适用场景
 已经有了基础分析后，需要对尚未挖掘出来的逻辑继续深挖时，使用此方法论进行逻辑下钻。

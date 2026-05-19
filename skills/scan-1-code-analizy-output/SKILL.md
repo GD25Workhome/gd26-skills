@@ -1,9 +1,14 @@
 ---
-name: scan-code-analizy-output
+name: scan-1-code-analizy-output
 description: 扫码代码的所有输出。先用简短文字概括该代码在做什么，再提取其输出，比如接口返回结果、数据库变更、第三方接口与组件的调用。
 ---
 
 # 扫描输出影响技能
+
+## 配合关系（建议顺序）
+
+- 本技能为代码深度分析流程的 **第 1 步**。
+- 后续可接 **scan-2-output-field-logic**（字段计算逻辑）、**scan-3-output-field-logic-drilldown**（复杂字段下钻）。
 
 ## 适用场景
 
