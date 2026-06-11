@@ -51,6 +51,10 @@
 
 ### 其它 skills
 
+- **python-comments**
+  - **说明**：在通用 Python 注释规范（简体中文 docstring、类型提示）之上，要求**多行** docstring 正文相对 `"""` 再缩进 4 格、**单行** docstring 写在一行内以便折叠；流程较多时用 `# N.` / `# N~M.` 步骤注释；不直观的方法调用处添加一行简短说明。
+  - **主文档**：[SKILL.md](skills/python-comments/SKILL.md)、[examples.md](skills/python-comments/examples.md)
+
 - **ai-docs-md-naming**
   - **说明**：在用户未指定文件名、需将 Markdown 写入仓库（默认 `ai_docs/`）时，按 `YYMMDDNN-描述.md` 生成唯一文件名：须先列出目标目录、仅统计当天前缀文件、取最大 `NN` 再加一；禁止凭记忆猜序号。
   - **主文档**：[SKILL.md](skills/ai-docs-md-naming/SKILL.md)
@@ -59,4 +63,5 @@
 
 
 ## 脚本 `scripts`
-- sync-skills-to-cursor.sh：将skill下所有的技能同步到`~/.cursor/skills/`中，可以选择是否备份旧的技能
+- **sync-skills-to-cursor.sh**：将 `skills/` 下所有技能同步到 `~/.cursor/skills/`；目标已有同名技能时可选择备份或覆盖。
+- **sync-skills-to-cursor-skip-existing.sh**：同上，但目标已有同名技能时 **直接跳过**，无交互、不备份、不覆盖。适合只安装本机尚未有的新技能。
