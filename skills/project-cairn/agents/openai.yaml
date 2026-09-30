@@ -1,0 +1,4 @@
+interface:
+  display_name: "Project Cairn"
+  short_description: "把 AI 项目工作沉淀为可复用知识"
+  default_prompt: "使用 $project-cairn 初始化并维护项目知识工作流。"

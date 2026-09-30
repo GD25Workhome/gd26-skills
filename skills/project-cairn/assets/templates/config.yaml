@@ -1,0 +1,69 @@
+version: 0.1
+project:
+  name: "{{PROJECT_NAME}}"
+  summary: "{{PROJECT_SUMMARY}}"
+cairn:
+  knowledge_dir: "cairn"
+  # 本实例初始化时所依据的 skill 规范日期，或最近一次升级到的规范日期。
+  # 由 init 根据 references/upgrade.md 的「当前规范日期」自动盖章（非用户决策）；
+  # 每次实例升级后重新盖章。审计 / 升级漂移检查会把它与 upgrade.md 变更日志对比。
+  # 缺此字段 = 实例早于该机制：跑完整变更日志（见 references/upgrade.md）。
+  skill_spec_date: "{{SKILL_SPEC_DATE}}"
+  # git_policy: track | ignore | private_sync
+  # ignore / private_sync 会把整个 Cairn 足迹排除出仓库——
+  # 知识目录、.cairn/，以及 init 创建的任何 AGENTS.md / CLAUDE.md——
+  # 不只是知识目录（见 references/init.md，「执行 git_policy」）。
+  git_policy: "{{GIT_POLICY}}"
+  # reference_git_policy（可选）：与 git_policy 相同枚举，仅作用于
+  # cairn/Reference/（项目拥有但未原创的外部原始输入——
+  # 例如客户 PDF、通话转写）。省略则继承上方的 git_policy。
+  # 当 Reference/ 可能持有比项目自有知识更敏感的材料时单独设置，
+  # 例如 git_policy: track（cairn/ 提交/公开），但 reference_git_policy: ignore
+  # 或 private_sync（外部原材料无论如何不进仓库）。
+  # reference_git_policy: "{{REFERENCE_GIT_POLICY}}"
+  # language: en | zh | ... — 为本项目撰写 AGENTS.md/LOG.md/ROADMAP.md/知识专题文档时使用的语言
+  language: "{{DOC_LANGUAGE}}"
+graduation:
+  # 一个或多个毕业 provider。两种等价形态：
+  #
+  # (a) 单 provider（最简）— 保留以下三个键：
+  provider: "{{GRADUATION_PROVIDER}}"
+  target: "{{GRADUATION_TARGET}}"
+  index: "{{KNOWLEDGE_INDEX}}"
+  #
+  # (b) 多 provider — 用 `providers:` 列表替换上方三键。
+  #     每项携带 target + index，以及写入器需要的任何 provider 特定
+  #     适配设置（scope、api、link_format、identity）。
+  #     这是项目毕业到多个知识库时的真实形态。示例：
+  # providers:
+  #   - provider: obsidian
+  #     target: "<vault-relative knowledge dir>"
+  #     index: "<vault-relative INDEX.md>"
+  #     link_format: wikilink
+  #   - provider: lark-wiki
+  #     space_id: "<wiki space id>"
+  #     index: "<wiki INDEX node url>"
+  #     index_node_token: "<index node token>"
+  #     scope: "wiki:wiki"   # 粗粒度 scope；覆盖 wiki 读 + 写
+  #     api: native          # 原生 wiki resource API，不是 CLI 捷径
+  #     identity: user
+  #     link_format: url
+  #   - provider: notion
+  #     database_id: "<notion database id>"  # DB 同时是容器与 INDEX
+  #     index: "<DB human URL>"
+  #     parent_page_id: "<page the DB lives under>"
+  #     frontmatter_mode: properties   # frontmatter -> DB properties，不是 YAML
+  #     transport: rest        # 经 curl 直连 REST（ntn CLI 代理不可靠）
+  #     api: native
+  #     notion_version: "2022-06-28"
+  #     identity: integration_token
+  #     credential_env: NOTION_API_TOKEN  # 值在 .env，此处只引用名字
+  #     link_format: url
+  #
+  # (c) 暂缓 — 尚未对接知识库（「先试用 Cairn，稍后再接」）。
+  #     用下面这一条标记替换 (a) 中的三键；provider 决策改在
+  #     第一次毕业时收集（见 references/graduation.md → 暂缓对接 provider）：
+  # provider: none
+history:
+  # migration_mode: start_fresh | inventory_only | selective_migrate
+  migration_mode: "{{MIGRATION_MODE}}"

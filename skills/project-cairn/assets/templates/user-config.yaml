@@ -1,0 +1,38 @@
+version: 0.1
+defaults:
+  # 注意：git_policy / reference_git_policy 故意不属于此处。
+  # 它们是仓库的属性（公开 OSS？客户私有？一次性沙盒？），
+  # 不是个人习惯，所以上一个项目的答案对下一个没有预测价值——
+  # 且两种错误方向不对称：静默提交本应保持私密的 cairn/ 不可逆，
+  # 而漏提交则不是。每次 init 都会询问它们。
+  # 见 references/init.md →「每项目分别决策（永不继承）」。
+  migration_mode: "{{MIGRATION_MODE}}"
+  language: "{{DOC_LANGUAGE}}"
+providers:
+  # 以 provider 类型为键，不是列表——用户通常每种 provider 只有一个
+  # 习惯性目标，列表会引发「哪个是默认」的歧义，字典可避免。
+  # 只填充个人实际在用的 provider；其余省略。
+  obsidian:
+    vault: "<vault name>"
+    target: "<vault-relative knowledge dir>"
+    index: "<vault-relative INDEX.md>"
+    link_format: wikilink
+  lark-wiki:
+    space_id: "<wiki space id>"
+    index: "<wiki INDEX node url>"
+    index_node_token: "<index node token>"
+    scope: "wiki:wiki"
+    api: native
+    identity: user
+    link_format: url
+  notion:
+    database_id: "<notion database id>"
+    index: "<DB human URL>"
+    parent_page_id: "<page the DB lives under>"
+    frontmatter_mode: properties
+    transport: rest
+    api: native
+    notion_version: "2022-06-28"
+    identity: integration_token
+    credential_env: NOTION_API_TOKEN
+    link_format: url
