@@ -50,6 +50,26 @@
       - **主文档**：[SKILL.md](skills/save-md-artifact/SKILL.md)
       - **脚本**：[createMdFile.py](skills/save-md-artifact/scripts/createMdFile.py)
       - **配合关系**：可被 **[project-cairn](skills/project-cairn/SKILL.md)** 依赖（工作笔记命名）；与 **[ai-docs-md-naming](skills/ai-docs-md-naming/SKILL.md)** 互补而非互相替代。注意：SKILL 内示例路径写的是 `~/.claude/skills/...`，在 Cursor 下需装到对应 skills 目录或改调用路径。
+  - 开发日记
+    - 技能介绍：
+      1. **agent-diary** 读取配置目录里按日期存放的开发日报，整理成时间段、事项、投入、完成与未完成，并按项目类型写成公司日志、个人日志、其它；判断不了的放进待确认。默认汇总一段时间内的跨项目、跨会话记录，只有明确限制范围时才收窄。相同内容去重，冲突先问。只整理日报。
+      2. 用户级 `~/.agentdiary/config.yaml` 与编程工具无关，Cursor 与 Claude Code 共用一份，只放日记目录、时区、文件名，以及缺日报时的两个开关。项目名单写在日记目录的 `agentdiary.md`，跟着日记走：一节一个项目，写类型、部门，路径和别名可选（如「袜业库」之于「大唐袜业」），不知道仓库路径的项目可以只按名称记一条。当前工作区不在名单里时，先推测类型、名称、部门，连同路径问过用户再追加。日记里出现、不知道仓库路径的项目不自动记入。还没有用户级配置时，先问日记目录并确认时区与文件名，本轮不整理。
+      3. 只在用户点名，或明确要求总结 / 整理开发日记、工作日志时触发（也可以直接敲 `/agent-diary`）。默认先在对话里给出结果；用户要求写回时，把总结合并追加进对应日期的「工作记录」，流水和总结保持原样。当天日报不存在时默认先问是否新建。
+    - 技能命令（示例）：
+
+      | 意图     | 示例说法                          |
+      | ------ | ----------------------------- |
+      | 总结今天   | 用 agent-diary 总结今天的工作日志       |
+      | 指定日期   | 用 agent-diary 整理 261009 的开发日记 |
+      | 一段时间   | 用 agent-diary 整理最近 3 天的开发日记   |
+      | 只看当前项目 | 用 agent-diary，只要当前项目          |
+      | 直接调用   | `/agent-diary`                |
+      | 写回     | 把刚才的工作记录写回日记                  |
+
+    - **agent-diary**
+      - **说明**：开发日记整理。单日（今天 / 昨天 / `YYMMDD` 等）和日期区间都支持。用户级配置在 `~/.agentdiary/config.yaml`；项目名单在 `<diary_dir>/agentdiary.md`。配置不放在项目根。
+      - **主文档**：[SKILL.md](skills/agent-diary/SKILL.md)、[examples.md](skills/agent-diary/examples.md)、[config.example.yaml](skills/agent-diary/config.example.yaml)、[agentdiary.example.md](skills/agent-diary/agentdiary.example.md)
+      - **同步**：Cursor 用 `scripts/sync-skills-to-cursor*.sh` 装到 `~/.cursor/skills/agent-diary`；Claude Code 将目录复制到 `~/.claude/skills/agent-diary`。
 - 代码分析
   - 代码分析技能介绍：
     1. analizy-code 为通用代码扫描接口，大接口受限于模型上下文限制，可能会输出不全

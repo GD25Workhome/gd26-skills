@@ -1,0 +1,26 @@
+# agent-diary 用户级配置模板
+#
+# 复制并填写到 ~/.agentdiary/config.yaml（运行时不读本文件）。路径与宿主无关：
+# Cursor、Claude Code 及其它认 Agent Skills 的工具共用这一份。
+#
+# 该文件还不存在时，技能会先询问 diary_dir，并确认下面两项默认值，再写入该路径。
+# 不使用项目根的 .agentdiary/config.yaml。
+
+# 日报目录。本机为 dev-diary 的 diary 目录
+diary_dir: /Users/shuxiaolong/work/github/dev-diary/diary
+
+# 计算「今天 / 昨天」用的时区
+timezone: Asia/Shanghai
+
+# 日报文件名。2026-10-10 → 261010.md
+# 可用占位符：{yy} {mm} {dd}，均为补零后的数字
+daily_name: "{yy}{mm}{dd}.md"
+
+# 当天日报还不存在时是否询问新建。true：必须问。false：不再问。
+ask_create_diary: true
+
+# 仅在 ask_create_diary 为 false 时使用。true：直接新建。false：不新建。
+# create_if_missing: false
+
+# 项目名单不在本文件里，写在日记目录下的 agentdiary.md（跟着日记走）。
+# 形态见 agentdiary.example.md：一节一个项目，写类型、部门，路径与别名可选。

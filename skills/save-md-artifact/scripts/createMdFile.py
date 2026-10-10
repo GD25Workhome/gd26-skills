@@ -40,7 +40,7 @@ EXAMPLE_PATH = SKILL_DIR / 'config.example.yaml'
 
 # Built-in defaults (lowest priority)
 DEFAULTS = {
-    'output_dir': 'ai-docs',
+    'output_dir': 'ai_docs',
     'subdir': '',
     'slug_max_length': 200,
     'slug_fallback': 'untitled',
