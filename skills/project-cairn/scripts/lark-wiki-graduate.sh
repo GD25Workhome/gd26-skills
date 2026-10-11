@@ -190,6 +190,7 @@ contains: $CONTAINS_YAML
 tags: $TAGS_YAML
 graduated_from:$GFROM_YAML$PROVENANCE_YAML
 authoring_mode: ${AMODE:-ai_generated}
+
 ---"
   TMP_CONTENT="$(mktemp -t lark-grad.XXXXXX)"
   trap 'rm -f "$TMP_CONTENT"' EXIT

@@ -181,6 +181,7 @@ contains: $CONTAINS_YAML
 tags: $TAGS_YAML
 graduated_from:$GFROM_YAML$PROVENANCE_YAML
 authoring_mode: $AMODE
+
 ---"
 
 BODY=""

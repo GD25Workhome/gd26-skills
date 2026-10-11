@@ -1,0 +1,27 @@
+version: 0.1
+project:
+  name: "gd26-skills"
+  summary: "Shuxl的skills技能仓库"
+cairn:
+  knowledge_dir: "cairn"
+  # Date of the skill spec this instance was initialized against, or last
+  # upgraded to. Stamped automatically by init from references/upgrade.md's
+  # "Current spec date" (not a user decision); re-stamped after each instance
+  # upgrade. Audit/upgrade drift checks compare it against the upgrade.md
+  # changelog. Missing field = instance predates this mechanism: run the full
+  # changelog (see references/upgrade.md).
+  skill_spec_date: "2026-08-07"
+  # git_policy: track | ignore | private_sync
+  git_policy: "ignore"
+  # language: en | zh | ... — language used when writing AGENTS.md/LOG.md/ROADMAP.md/topic notes for this project
+  language: "zh"
+graduation:
+  provider: "obsidian"
+  target: "knowledge/01-inbox/skills"
+  index: "knowledge/01-inbox/skills/INDEX.md"
+  # Obsidian adapter settings
+  vault: "dev-diary"
+  link_format: wikilink
+history:
+  # migration_mode: start_fresh | inventory_only | selective_migrate
+  migration_mode: "selective_migrate"
