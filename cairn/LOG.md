@@ -2,6 +2,22 @@
 
 本文件按倒序记录实质进展——最新条目在顶部、紧接本行下方。每条保持简短——仅摘要与指针；结论沉淀进 `cairn/<topic>.md`。
 
+## 2026-10-12 · project-cairn 文首收成一节并补上流程
+
+- `skills/project-cairn/README.md` 文首四个大标题收成「适用场景」一节。
+- 节内两条小流程：留在本项目（`LOG.md`、专题、下次先读），毕业到 Obsidian（确认后写入 `dev-diary` 的 `knowledge/01-inbox/skills`，用到再记 `Cited.md`）。
+
+## 2026-10-12 · project-cairn 文首改成小节并写上毕业
+
+- 文首大段拆成适用场景、痛点、先留在本项目、再毕业到通用知识库。去掉 `AGENTS.md`。
+- 毕业写明：你确认后交到通用库；本仓库的库是 Obsidian vault `dev-diary`，目录 `knowledge/01-inbox/skills`。
+- 正文在 `skills/project-cairn/README.md`。此前同日那条仍是改之前的大段。
+
+## 2026-10-12 · project-cairn 文首补上适用场景
+
+- 在 `skills/project-cairn/README.md` 标题后加了一段白话：多次对话、Cursor 与 Claude Code 换着用时，规则、进度和踩坑会留在单次聊天里；干活时写入 `AGENTS.md` 与 `cairn/`，下次先读这些文件。
+- 原有口号和后面的章节未改。
+
 ## 2026-10-11 · 本机装上 mattpocock 的 grill 四项技能
 
 - 用户级安装到 `~/.agents/skills/`：`grill-me`、`grilling`、`grill-with-docs`、`domain-modeling`。未写入本仓库，未装 `find-skills`。

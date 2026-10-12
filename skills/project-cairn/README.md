@@ -1,10 +1,26 @@
+# 适用场景
+
+用 AI 写代码时，一个项目会开很多次对话，也会在 Cursor 和 Claude Code 之间换着用来。对话一关，做到哪、踩过的坑就留在那次聊天里。下次还得重讲，换一个工具也要再讲，同一个问题到下一个项目还会再出现。
+
+- **项目内对话记录，主动/自动总结**
+  1. 这次对话有实质进展：在 `cairn/LOG.md` 顶部记一条短摘要，写清做了什么，并指向细节在哪。
+  2. 结论已经定下来：写进 `cairn/<主题>.md`，记下原因、怎么处理的、以后按哪条做。
+  3. 下次打开这个项目，或换到另一个工具：先读 `cairn/`，接着上次的结论往下做。
+- 总结完成的记录，**毕业到中央仓库-比如obsidian**
+  1. 这条经验在本项目里验证过，而且别的项目也会用到，才拿去毕业。
+  2. 你确认之后才写出去。确认前只留在本项目，过程细节也留在原地。
+  3. 写出去时去掉只属于本项目的细节，收成一篇笔记，放进 Obsidian vault `dev-diary` 的 `knowledge/01-inbox/skills`，并在同目录的 `INDEX.md` 补上链接。
+  4. 之后另一个项目动手前先去 Obsidian 找。真用上了，在那个项目的 `cairn/Cited.md` 记一笔指针。
+
 # Project Cairn
+
+---
 
 **把项目工作沉淀为可复用知识。**
 
 [打开交互式指南，了解本 Skill](https://iblinkq.github.io/project-cairn/)
 
-[![Project Cairn 交互式总览（英文界面）](docs/assets/screenshots/project-cairn-overview-en.png)](https://iblinkq.github.io/project-cairn/)
+![Project Cairn 交互式总览（英文界面）](docs/assets/screenshots/project-cairn-overview-en.png)
 
 ## 是否似曾相识？
 
@@ -12,6 +28,8 @@
 - 新开会话或换一个 agent，上下文和规则又要从头讲一遍。
 - 计划、进展和结论散落各处，agent 在新旧方向之间来回跳。
 - 你知道答案存在，只是埋在某次旧对话里。
+
+
 
 ## Project Cairn 做什么
 
@@ -67,14 +85,18 @@ git clone https://github.com/iBlinkQ/project-cairn.git ~/.agents/skills/project-
 2. 照常工作。在普通协作回合中，agent 按 `AGENTS.md` 维护进度与当前结论。没有单独的「记录服务」要跑。
 3. 当一条已验证的教训可能帮到其他项目时，让 agent 准备毕业候选。在你确认范围之前，不会写入长期知识库。后续项目先搜索；只有结果真正影响了工作时，才在 `cairn/Cited.md` 追加指针。
 
+
+
 ## 两侧分工
 
 Project Cairn 分开两条生命周期，而不是把所有信息塞进一份越长越大的文件。
 
-| 侧 | 保留什么 | 典型位置 | 何时阅读 |
-|---|---|---|---|
-| **项目侧** | 规则、进度、当前结论与本地案例 | 根目录 `AGENTS.md` 与 `cairn/` | 进入与推进项目时 |
-| **知识库侧** | 可跨项目复用的蒸馏知识 | Obsidian、Notion 或飞书 / Lark wiki | 新工作需要更早的教训时 |
+
+| 侧        | 保留什么            | 典型位置                            | 何时阅读        |
+| -------- | --------------- | ------------------------------- | ----------- |
+| **项目侧**  | 规则、进度、当前结论与本地案例 | 根目录 `AGENTS.md` 与 `cairn/`      | 进入与推进项目时    |
+| **知识库侧** | 可跨项目复用的蒸馏知识     | Obsidian、Notion 或飞书 / Lark wiki | 新工作需要更早的教训时 |
+
 
 项目侧让本地事实与结论保持新鲜。当一条教训证明超出本项目仍有用时，经人工确认的毕业把它蒸馏进知识库侧。每一侧在各自范围内保持权威。
 
@@ -96,15 +118,17 @@ Project Cairn 分开两条生命周期，而不是把所有信息塞进一份越
 
 Project Cairn 不会一次打出一堆空模板目录。除核心初始化文件外，文档只在出现真实信号时才创建。
 
-| 文件 | 职责 |
-|---|---|
-| `AGENTS.md` | 规则与导航 |
-| `.cairn/config.yaml` | 机器可读配置 |
-| `cairn/LOG.md` | 倒序时间线 |
-| `cairn/ROADMAP.md` | 总目标、计划与当前进度 |
-| `cairn/<topic>.md` | 某一主题的当前真相 |
-| `cairn/Reference/` | 项目拥有的外部原始材料 |
-| `cairn/Cited.md` | 影响了工作的知识指针 |
+
+| 文件                   | 职责          |
+| -------------------- | ----------- |
+| `AGENTS.md`          | 规则与导航       |
+| `.cairn/config.yaml` | 机器可读配置      |
+| `cairn/LOG.md`       | 倒序时间线       |
+| `cairn/ROADMAP.md`   | 总目标、计划与当前进度 |
+| `cairn/<topic>.md`   | 某一主题的当前真相   |
+| `cairn/Reference/`   | 项目拥有的外部原始材料 |
+| `cairn/Cited.md`     | 影响了工作的知识指针  |
+
 
 被代码直接消费的 schema、配置与契约留在代码树。Cairn 保留它们周围的知识：为何是这样、试过哪些替代、实现时出过什么错。
 
@@ -138,34 +162,42 @@ scripts/notion-preflight.sh
 scripts/lark-preflight.sh
 ```
 
+
+
 ## 了解更多
 
 Project Cairn 补足相邻工具，而不是取代它们：
 
-| 工具或方法 | 主要工作 | 与 Cairn 的关系 |
-|---|---|---|
-| [LLM Wiki](https://github.com/karpathy) | 把读过的源材料组织成 wiki | LLM Wiki 侧重源知识；Cairn 侧重通过项目工作学到的知识 |
-| [Open Knowledge Format](https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing) | 让知识文件可被人与机器交换 | OKF 关心格式；Cairn 关心形成、维护、毕业与复用 |
-| Agent memory | 保留 agent 的偏好与工作上下文 | Memory 支持 agent 连续性；Cairn 支持项目知识连续性 |
-| [superpowers](https://github.com/obra/superpowers) | 通过规格、计划、测试与评审提高交付可靠性 | superpowers 管过程；Cairn 保留从中学到的稳定结论 |
+
+| 工具或方法                                                                                                                                 | 主要工作                 | 与 Cairn 的关系                         |
+| ------------------------------------------------------------------------------------------------------------------------------------- | -------------------- | ----------------------------------- |
+| [LLM Wiki](https://github.com/karpathy)                                                                                               | 把读过的源材料组织成 wiki      | LLM Wiki 侧重源知识；Cairn 侧重通过项目工作学到的知识  |
+| [Open Knowledge Format](https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing) | 让知识文件可被人与机器交换        | OKF 关心格式；Cairn 关心形成、维护、毕业与复用        |
+| Agent memory                                                                                                                          | 保留 agent 的偏好与工作上下文   | Memory 支持 agent 连续性；Cairn 支持项目知识连续性 |
+| [superpowers](https://github.com/obra/superpowers)                                                                                    | 通过规格、计划、测试与评审提高交付可靠性 | superpowers 管过程；Cairn 保留从中学到的稳定结论   |
+
 
 agent「记得某件事」不等于项目「学会了某件事」。
 
 ## 文档地图
 
-| 参考 | 用途 |
-|---|---|
-| `references/init.md` | 初始化或改造 Project Cairn |
-| `references/maintenance.md` | 维护 `LOG.md`、`ROADMAP.md` 与知识专题文档 |
-| `references/graduation.md` | 判断、蒸馏并写入可复用知识 |
-| `references/graduation/` | 每个 provider 一条执行路径（飞书 wiki、Notion、Obsidian） |
-| `references/provider-interface.md` | provider 适配器的行为契约 |
-| `references/consume.md` | 搜索、使用并引用外部知识 |
-| `references/audit.md` | 发现漂移、矛盾与缺漏记录 |
-| `references/upgrade.md` | 检查并升级已初始化项目 |
-| `references/frontmatter.md` | 项目笔记与知识库笔记字段 |
-| `references/branch-closure.md` | 在探索分支关闭前抢救知识 |
-| `references/zh-glossary.md` | 中文项目文档的固定术语 |
+
+| 参考                                 | 用途                                          |
+| ---------------------------------- | ------------------------------------------- |
+| `references/init.md`               | 初始化或改造 Project Cairn                        |
+| `references/maintenance.md`        | 维护 `LOG.md`、`ROADMAP.md` 与知识专题文档            |
+| `references/graduation.md`         | 判断、蒸馏并写入可复用知识                               |
+| `references/graduation/`           | 每个 provider 一条执行路径（飞书 wiki、Notion、Obsidian） |
+| `references/provider-interface.md` | provider 适配器的行为契约                           |
+| `references/consume.md`            | 搜索、使用并引用外部知识                                |
+| `references/audit.md`              | 发现漂移、矛盾与缺漏记录                                |
+| `references/upgrade.md`            | 检查并升级已初始化项目                                 |
+| `references/frontmatter.md`        | 项目笔记与知识库笔记字段                                |
+| `references/branch-closure.md`     | 在探索分支关闭前抢救知识                                |
+| `references/zh-glossary.md`        | 中文项目文档的固定术语                                 |
+
+
+
 
 ## 贡献
 
