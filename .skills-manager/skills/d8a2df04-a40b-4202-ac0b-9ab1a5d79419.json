@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "skill_id": "d8a2df04-a40b-4202-ac0b-9ab1a5d79419",
+  "path": "skills/leetcode-2-analizy-solution",
+  "path_key": "skills/leetcode-2-analizy-solution",
+  "enabled": true,
+  "tags": [],
+  "source": {
+    "type": "import",
+    "ref": null,
+    "subpath": null,
+    "branch": null
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "skill_id": "966d6e8c-1989-4761-9938-495115df5af7",
+  "path": "skills/ai-docs-md-naming",
+  "path_key": "skills/ai-docs-md-naming",
+  "enabled": true,
+  "tags": [],
+  "source": {
+    "type": "import",
+    "ref": null,
+    "subpath": null,
+    "branch": null
+  }
+}

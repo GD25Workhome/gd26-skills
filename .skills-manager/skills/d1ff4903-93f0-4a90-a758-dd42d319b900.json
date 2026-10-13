@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "skill_id": "d1ff4903-93f0-4a90-a758-dd42d319b900",
+  "path": "skills/scan-2-output-field-logic",
+  "path_key": "skills/scan-2-output-field-logic",
+  "enabled": true,
+  "tags": [],
+  "source": {
+    "type": "import",
+    "ref": null,
+    "subpath": null,
+    "branch": null
+  }
+}

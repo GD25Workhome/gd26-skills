@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "skill_id": "bc70197d-a171-4f39-9623-125ee5adafdb",
+  "path": "skills/save-md-artifact",
+  "path_key": "skills/save-md-artifact",
+  "enabled": true,
+  "tags": [],
+  "source": {
+    "type": "import",
+    "ref": null,
+    "subpath": null,
+    "branch": null
+  }
+}

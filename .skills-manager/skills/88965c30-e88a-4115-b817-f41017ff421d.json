@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "skill_id": "88965c30-e88a-4115-b817-f41017ff421d",
+  "path": "skills/project-cairn",
+  "path_key": "skills/project-cairn",
+  "enabled": true,
+  "tags": [],
+  "source": {
+    "type": "import",
+    "ref": null,
+    "subpath": null,
+    "branch": null
+  }
+}

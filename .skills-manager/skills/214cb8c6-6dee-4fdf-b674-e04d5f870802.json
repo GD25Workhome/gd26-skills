@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "skill_id": "214cb8c6-6dee-4fdf-b674-e04d5f870802",
+  "path": "skills/python-comments",
+  "path_key": "skills/python-comments",
+  "enabled": true,
+  "tags": [],
+  "source": {
+    "type": "import",
+    "ref": null,
+    "subpath": null,
+    "branch": null
+  }
+}

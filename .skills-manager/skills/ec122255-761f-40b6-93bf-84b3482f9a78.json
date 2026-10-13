@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "skill_id": "ec122255-761f-40b6-93bf-84b3482f9a78",
+  "path": "skills/scan-3-output-field-logic-drilldown",
+  "path_key": "skills/scan-3-output-field-logic-drilldown",
+  "enabled": true,
+  "tags": [],
+  "source": {
+    "type": "import",
+    "ref": null,
+    "subpath": null,
+    "branch": null
+  }
+}

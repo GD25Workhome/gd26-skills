@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "skill_id": "7cf8fc77-4c65-4519-830e-a5768380a1fa",
+  "path": "skills/agent-diary",
+  "path_key": "skills/agent-diary",
+  "enabled": true,
+  "tags": [],
+  "source": {
+    "type": "import",
+    "ref": null,
+    "subpath": null,
+    "branch": null
+  }
+}

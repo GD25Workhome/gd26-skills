@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "skill_id": "b5fb7892-588c-4407-9de1-00366c740ed3",
+  "path": "skills/leetcode-1-download-content",
+  "path_key": "skills/leetcode-1-download-content",
+  "enabled": true,
+  "tags": [],
+  "source": {
+    "type": "import",
+    "ref": null,
+    "subpath": null,
+    "branch": null
+  }
+}
