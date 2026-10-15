@@ -1,6 +1,18 @@
 # Project Cairn Log
 
-本文件按倒序记录实质进展——最新条目在顶部、紧接本行下方。每条保持简短——仅摘要与指针；结论沉淀进 `cairn/<topic>.md`。
+本文件按倒序记录实质进展——最新条目在顶部、紧接本行下方。每条保持简短——仅摘要与指针；结论沉淀进 `cairn/<topic>.md`。条目标题时间戳为本地时间 `YYYY-MM-DD HH:mm`（精确到分钟）。
+
+## 2026-10-15 08:54 · 整理 CodeGraph 简介与用法
+
+- CodeGraph 是本地代码图谱 CLI + MCP，不是 `skills/` 里的 Agent Skill。
+- 简介、安装三步、Cursor 里怎么问、常用 CLI，写在 `otherSkill/codeGraph/codeGraph.md`。
+- 本仓库已跑过 `codegraph init`（12 文件，113 节点，216 边）。
+
+## 2026-10-13 14:04 · LOG 条目标题时间戳改为精确到分钟
+
+- `skills/project-cairn`：新增条目二级标题用本地时间 `YYYY-MM-DD HH:mm`；历史日精度条目不批量改写。
+- 已改 `references/maintenance.md`、`init.md`、`upgrade.md`（规范日期 2026-10-13）、模板 `LOG.md`/`AGENTS.md`，并同步本机 `~/.cursor/skills` 与 `~/.claude/skills` 安装副本。
+- 约定见 `cairn/LOG时间戳.md`。本实例 `skill_spec_date` 盖章为 `2026-10-13`。
 
 ## 2026-10-12 · project-cairn 文首收成一节并补上流程
 

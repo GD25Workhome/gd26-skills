@@ -123,7 +123,7 @@ Project Cairn 不会一次打出一堆空模板目录。除核心初始化文件
 | -------------------- | ----------- |
 | `AGENTS.md`          | 规则与导航       |
 | `.cairn/config.yaml` | 机器可读配置      |
-| `cairn/LOG.md`       | 倒序时间线       |
+| `cairn/LOG.md`       | 倒序时间线（标题时间戳到分钟） |
 | `cairn/ROADMAP.md`   | 总目标、计划与当前进度 |
 | `cairn/<topic>.md`   | 某一主题的当前真相   |
 | `cairn/Reference/`   | 项目拥有的外部原始材料 |

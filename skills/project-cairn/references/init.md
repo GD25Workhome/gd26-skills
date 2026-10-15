@@ -158,7 +158,7 @@
 - `AGENTS.md` — 来自 `assets/templates/AGENTS.md`，替换五个占位符。
 - `CLAUDE.md` — 来自 `assets/templates/CLAUDE.md`（一行 `@AGENTS.md`）。
 - `.cairn/config.yaml` — 来自 `assets/templates/config.yaml`，冻结已收集的值。`{{SKILL_SPEC_DATE}}` 自动从 `references/upgrade.md` 的「Current spec date」盖章——非用户决策，永不询问；用于锚定后续实例漂移检查（见 `upgrade.md`）。
-- `cairn/LOG.md` — 来自 `assets/templates/LOG.md`。
+- `cairn/LOG.md` — 来自 `assets/templates/LOG.md`。将 `{{DATE}}` 替换为初始化时刻的本地时间 `YYYY-MM-DD HH:mm`（精确到分钟，例如 `2026-10-13 14:05`）。
 - `cairn/ROADMAP.md` — 可选；仅当项目有跨会话目标时。
 - `.gitignore` — 仅当已解析的 `git_policy` / `reference_git_policy` 需要规则时；若不存在则创建，否则幂等追加。块覆盖 `<knowledge_dir>/`、`.cairn/`，以及本次 init 创建的任何 `AGENTS.md` / `CLAUDE.md`，并带中性注释（见「强制执行 `git_policy`」）。
 

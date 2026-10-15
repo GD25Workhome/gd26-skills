@@ -2,7 +2,7 @@
 
 将已初始化的项目实例拉齐到当前技能规范，或度量其漂移程度。`cairn init` 把当日规范冻结进项目（AGENTS.md 措辞、配置形态、LOG 约定）；技能持续演进，冻结副本不会自动更新。本参考既是检测清单，也是弥合差距的执行手册。
 
-**Current spec date: 2026-09-04**
+**Current spec date: 2026-10-13**
 
 ## 「升级」的两层——分开看
 
@@ -103,3 +103,10 @@
 - **Detect**：对 `.cairn/config.yaml` 写着 `git_policy: ignore` 或 `private_sync` 的项目，运行 `git ls-files -- .cairn AGENTS.md CLAUDE.md '<knowledge_dir>'`。任一路径被列出 = 已漂移：策略说 Cairn 不进本仓库，这些却已提交——若远程公开，则已发布。另计漂移：忽略块注释点名 `cairn init`、策略或 Cairn 本身。
 - **Fix**：将忽略块扩展为覆盖 `<knowledge_dir>/`、`.cairn/`，以及 Cairn 撰写的 `AGENTS.md` / `CLAUDE.md`，并将块注释替换为中性的 `# Local working files, not part of the project`。忽略规则对 git 已跟踪路径无效：用 `git rm --cached <path>` 作为补救列出这些路径，由用户决定——取消跟踪须其批准；若仓库已推送，须直说从 HEAD 删除不会从历史或任何已镜像处删除。
 - **Safety**：`confirm`（改变未来提交内容，并可能意味着接受或改写已发布历史）。
+
+### 2026-10-13 — LOG 条目标题时间戳精确到分钟
+
+- **Affects**：`cairn/LOG.md`（条目二级标题时间戳约定；导言行可提及格式）。
+- **Detect**：在本规范日期或之后新建的 LOG 条目，其二级标题时间戳仅为 `YYYY-MM-DD`（缺少 `HH:mm`）= 已漂移。规范日期之前的日精度历史条目不算漂移。导言行若仍暗示「只写到天」也计漂移。
+- **Fix**：此后新增条目一律使用本地时间 `YYYY-MM-DD HH:mm`（24 小时制，精确到分钟；不带秒或时区后缀），形如 `## 2026-10-13 14:05 · …`。不批量改写历史日精度标题。排序：有分钟的按完整时间戳；仅有日的视为该日时刻未知，保持其原有相对顺序（与 2026-07-01 同日多条规则一致）。同步导言行与 `references/maintenance.md` / 模板口径。
+- **Safety**：`auto`（约定与导言行；展示 diff；不触碰历史条目标题除非用户要求）。

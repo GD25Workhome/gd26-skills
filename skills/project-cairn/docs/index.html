@@ -885,7 +885,7 @@
         </div>
         <div class="file c-log ghost" id="f-log" data-d="log">
           <div class="fname">LOG.md</div>
-          <div class="frole" data-i18n="fLogRole">时序日志 · 倒序置顶 · 单条 ≤ 20 行 · 只写摘要 + 指针</div>
+          <div class="frole" data-i18n="fLogRole">时序日志 · 倒序置顶 · 时间戳到分钟 · 单条 ≤ 20 行 · 只写摘要 + 指针</div>
           <span class="badge" data-i18n="bTrigger">触发</span>
         </div>
         <div class="file mini c-proc" id="f-proc" style="display:none">
@@ -1089,7 +1089,7 @@ const DETAILS = {
     ["改名","原 PLAN.md → ROADMAP.md，消除与 superpowers plans 的术语撞名"]]},
   log:{name:"cairn/LOG.md", cat:"时序 · 不可变日志", color:"var(--log)", rows:[
     ["创建触发","init 建空壳；第一次实质推进写首条"],
-    ["纪律","倒序置顶（最新在上）· 单条 ≤ 20 行 · 只写摘要 + 指针"],
+    ["纪律","倒序置顶（最新在上）· 时间戳 YYYY-MM-DD HH:mm · 单条 ≤ 20 行 · 只写摘要 + 指针"],
     ["指针","可指向 cairn/ 专题文档，也可指向 docs/superpowers/ 过程制品"],
     ["关键","结论不在日志展开——形成结论的瞬间沉入专题文档"]]},
   topic:{name:"cairn/<主题>.md", cat:"知识 · 当前真相", color:"var(--know)", rows:[
@@ -1210,7 +1210,7 @@ const I18N = {
   fClaudeRole:{zh:"一行 <code>@AGENTS.md</code> stub · 让 Claude Code 也读到同一份（Codex 直接读 AGENTS.md）", en:"One-line <code>@AGENTS.md</code> stub · lets Claude Code read the same file (Codex reads AGENTS.md directly)"},  dirCairn:{zh:"📂 cairn / —— Project Cairn 的地盘 · 知识同步 / 公开边界（可配置）", en:"📂 cairn / —— Project Cairn’s turf · knowledge sync / public boundary (configurable)"},
   fRoadmapRole:{zh:"路线图与进度 · 里程碑 / 当前焦点 / 开放问题 · 保持精简（原 PLAN.md）", en:"Roadmap & progress · milestones / current focus / open questions · keep lean (was PLAN.md)"},
   bTrigger:{zh:"触发", en:"Trigger"},
-  fLogRole:{zh:"时序日志 · 倒序置顶 · 单条 ≤ 20 行 · 只写摘要 + 指针", en:"Timeline log · newest on top · ≤ 20 lines each · summary + pointer only"},
+  fLogRole:{zh:"时序日志 · 倒序置顶 · 时间戳到分钟 · 单条 ≤ 20 行 · 只写摘要 + 指针", en:"Timeline log · newest on top · timestamp to the minute · ≤ 20 lines each · summary + pointer only"},
   fTopicName:{zh:"&lt;主题&gt;.md", en:"&lt;topic&gt;.md"},
   fProcMini:{zh:"📄 superpowers 过程文档：specs / plans 等", en:"📄 superpowers process docs: specs / plans, etc."},
   fExtMini:{zh:"📎 外部资料 PDF / Word / Markdown / 图片等", en:"📎 External material — PDF / Word / Markdown / images"},
@@ -1313,7 +1313,7 @@ const DETAILS_EN = {
     ["Rename","PLAN.md → ROADMAP.md, removing the name clash with superpowers plans"]]},
   log:{name:"cairn/LOG.md", cat:"Timeline · immutable log", rows:[
     ["Creation trigger","init makes an empty shell; first real progress writes the first entry"],
-    ["Discipline","Reverse order (newest on top) · ≤ 20 lines each · summary + pointer only"],
+    ["Discipline","Reverse order (newest on top) · timestamp YYYY-MM-DD HH:mm · ≤ 20 lines each · summary + pointer only"],
     ["Pointer","May point to cairn/ topic docs, or to docs/superpowers/ process artifacts"],
     ["Key","Conclusions don’t unfold in the log — the moment one forms it sinks into a topic doc"]]},
   topic:{name:"cairn/&lt;topic&gt;.md", cat:"Knowledge · current truth", rows:[

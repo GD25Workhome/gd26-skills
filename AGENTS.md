@@ -32,7 +32,7 @@ Shuxl的skills技能仓库
 | `AGENTS.md` (root) | 规则与导航               | 很少改动，≤ 60 行                               |
 | `CLAUDE.md` (root) | 一行 `@AGENTS.md` 桩文件 | 写一次后不再改                                   |
 | `cairn/ROADMAP.md` | 路线图与进度              | 原地更新，保持精炼                                 |
-| `cairn/LOG.md`     | 时间线日志               | 新条目加在顶部（最新在前），每条 ≤ 20 行，仅摘要 + 指针          |
+| `cairn/LOG.md`     | 时间线日志               | 新条目加在顶部（最新在前），标题时间戳 `YYYY-MM-DD HH:mm`，每条 ≤ 20 行，仅摘要 + 指针 |
 | `cairn/<topic>.md` | 知识专题文档（当前真相）        | 原地更新；踩坑写入正文段落，用 `contains` 标记；修订在 LOG 留指针 |
 | `cairn/Reference/` | 外部原始输入              | 按需创建；只追加                                  |
 | `cairn/Cited.md`   | 知识库引用清单             | 仅指针，从不复制原文                                |
