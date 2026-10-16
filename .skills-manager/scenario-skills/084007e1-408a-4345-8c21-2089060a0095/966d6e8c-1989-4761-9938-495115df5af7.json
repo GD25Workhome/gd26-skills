@@ -10,7 +10,7 @@
     "gemini_cli": true,
     "github_copilot": true,
     "junie": true,
-    "opencode": false,
+    "opencode": true,
     "qwen_code": true,
     "trae": true,
     "trae_cn": true,
