@@ -1,6 +1,8 @@
 ---
 name: scan-3-output-field-logic-drilldown
 description: 深入分析指定字段（指定代码链路）的计算逻辑，先用简短文字概括该代码在做什么，再使用详细的文字描述、时序图、流程图将字段如何被计算出来的所有细节都描述出来。不适用没有分析基础的、首次分析的场景。
+metadata:
+  opencode/slash: "true"
 ---
 
 # 深入分析指定字段的计算逻辑

@@ -5,6 +5,8 @@ description: >-
   生成唯一文件名。必须先列出目标目录、仅统计当天前缀文件、取最大 NN 再加一。在用户要求新建
   ai_docs 文档、保存技术说明/设计文档、或与 analyze-code-entrypoint 等技能一并产出落盘
   文档时启用。
+metadata:
+  opencode/slash: "true"
 ---
 
 # ai_docs Markdown 文件命名（YYMMDDNN）

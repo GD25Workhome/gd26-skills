@@ -2,6 +2,13 @@
 
 本文件按倒序记录实质进展——最新条目在顶部、紧接本行下方。每条保持简短——仅摘要与指针；结论沉淀进 `cairn/<topic>.md`。条目标题时间戳为本地时间 `YYYY-MM-DD HH:mm`（精确到分钟）。
 
+## 2026-10-15 09:23 · CodeGraph 总结按 1.6.2 补齐，并在 Claude Code 接入
+
+- 载荷：Claude Code 侧用 `codegraph install -t claude -l global -y` 接入（此前只有 Cursor 接了）。除 MCP 配置外，还写入 `mcp__codegraph__*` 自动放行权限与 `UserPromptSubmit` hook；关 hook 用 `CODEGRAPH_NO_PROMPT_HOOK=1`。
+- `otherSkill/codeGraph/00-codeGraph.md` 逐项按已发布 tag `v1.6.2` 重写补全：新增 `includeIgnored` 等 5 个 `codegraph.json` 键、安装 flag 表、Windows 安装与平台矩阵、完整 CLI 命令与常用 flag、8 个 MCP 工具、常用环境变量、语言与框架清单、浏览器视图（未发布）；并订正 gd26-skills 索引为 17 文件 / 113 节点 / 216 边。
+- 坑写入 `cairn/CodeGraph.md`：官方站点与 CodeGraph 仓库 `AGENTS.md` 均有落后于代码之处，核对手段是 `git show v<版本>:<文件>` 或看已装包。
+- 注意：本文件旧条目把它记作 `otherSkill/codeGraph/codeGraph.md`，现路径是 `otherSkill/codeGraph/00-codeGraph.md`。
+
 ## 2026-10-15 08:54 · 整理 CodeGraph 简介与用法
 
 - CodeGraph 是本地代码图谱 CLI + MCP，不是 `skills/` 里的 Agent Skill。

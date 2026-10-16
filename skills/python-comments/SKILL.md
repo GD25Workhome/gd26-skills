@@ -6,6 +6,8 @@ description: >-
   方法内流程较多时
   按 # N. 步骤注释；调用其它方法时在调用处添加简短说明。在用户编写/重构 Python、要求
   补注释、代码审查注释风格，或提及 python 注释规范时启用。
+metadata:
+  opencode/slash: "true"
 ---
 
 # Python 注释规范

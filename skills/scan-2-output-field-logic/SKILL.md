@@ -1,6 +1,8 @@
 ---
 name: scan-2-output-field-logic
 description: 分析指定代码入口影响字段（指定具体字段）的计算逻辑。先用简短文字概括该代码在做什么，再产出字段级输入来源、计算逻辑。
+metadata:
+  opencode/slash: "true"
 ---
 
 # 分析指定的字段的计算逻辑

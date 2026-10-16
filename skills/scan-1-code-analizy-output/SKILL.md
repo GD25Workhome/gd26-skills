@@ -1,6 +1,8 @@
 ---
 name: scan-1-code-analizy-output
 description: 扫码代码的所有输出。先用简短文字概括该代码在做什么，再提取其输出，比如接口返回结果、数据库变更、第三方接口与组件的调用。
+metadata:
+  opencode/slash: "true"
 ---
 
 # 扫描输出影响技能

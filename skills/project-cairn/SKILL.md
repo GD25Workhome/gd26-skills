@@ -1,6 +1,8 @@
 ---
 name: project-cairn
 description: 标准化 AI 协作项目把工作沉淀为可复用知识的方式。在以下场景使用：在一个项目中初始化或改造 Project Cairn；在完成有实质进展的工作后记录进度；维护 AGENTS/CLAUDE/cairn 文档；审计项目知识以发现漂移或缺漏；从配置好的知识库中引用或使用外部知识；将已验证的项目经验毕业到可复用的知识库。
+metadata:
+  opencode/slash: "true"
 ---
 
 # Project Cairn（项目路标石堆）
