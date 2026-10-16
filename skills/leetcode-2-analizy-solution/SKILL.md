@@ -1,167 +1,180 @@
 ---
-name: leetcode-2-analizy-solution
+name: leetcode-1-download-content
 description: >-
-  根据用户提供的 LeetCode 题解截图或题解网页，识别正文与数学公式，由 AI 梳理为中文题解 Markdown：
-  落盘至 LeetCode/LeetCode{4位题号}/题解-LeetCode{题号}-{算法标签}.md，含原题链接、算法总览链接、思路与代码。
-  在用户要求写题解、解析题解截图/网址、生成 题解-LeetCode 文档，或整理 BFS/DFS/DP 等解法笔记时启用。
+  从 LeetCode 中国站（leetcode.cn）抓取原题正文与示例图，生成离线 Markdown，
+  并维护 LeetCode/leetCode题目.md 中「题目列表」索引（保留备注子项与其它章节）。
+  题号 4 位补零，文件名为 LeetCode题号-中文题名.md，图片落 imgs/。
+  在用户要求抓取/下载 LeetCode 原题、更新题目目录索引、或维护 leetCode题目.md 时启用。
 ---
 
-# LeetCode 题解解析与生成（analizy-solution）
+# LeetCode 原题抓取（download-content）
 
 ## 何时启用
 
-- 用户提供 **题解截图**、**题解网页 URL**，或粘贴的官方/社区题解文字，要求整理成仓库内题解 Markdown。
-- 用户指定题号、算法方向（如「广度优先」「动态规划」），要求生成 `题解-LeetCode*.md`。
-- 任务目标是 **解题思路文档**，不是抓取原题（原题用 **leetcode-1-download-content**）。
+- 用户给出 **题号**（如 `102`、`310`）或 **titleSlug**，要求抓取/下载/保存 **原题** Markdown。
+- 用户提到 `LeetCode` 目录、`imgs`、原题归档，且任务目标是 **题目描述**（不是题解）。
+- 用户要求 **更新/同步/维护** `leetCode题目.md` 或「题目列表」索引（可单独执行，不必同时抓题）。
 
-**不覆盖**：仅下载题目描述、维护 `leetCode题目.md` 索引。
+**不覆盖**：题解撰写、代码实现——另有技能处理。
 
 ## 目标产物（必须遵守）
 
 | 项 | 规则 |
 |----|------|
-| 目录 | `{项目根}/LeetCode/LeetCode{NNNN}/`（`NNNN` 为 4 位补零题号） |
-| 文件名 | `题解-LeetCode{NNNN}-{算法标签}.md` |
-| 示例 | `题解-LeetCode1162-广度优先.md`、`题解-LeetCode0542-动态规划.md` |
-| 语言 | 简体中文正文；代码块语言标 `java`（与现有题解一致） |
-| 数学 | 行内 `$...$`，独立公式 `$$...$$`，确保常见 Markdown 预览可渲染 |
+| 根路径 | 当前 **项目根目录** 下的 `LeetCode/`（用户指定其它根目录时从其指定） |
+| 题目目录 | `LeetCode/LeetCode{NNNN}/`，`NNNN` 为 **4 位补零** 题号（`102` → `0102`） |
+| Markdown 文件 | `LeetCode{NNNN}-{中文题名}.md`，与目录同级 |
+| 图片目录 | `LeetCode/LeetCode{NNNN}/imgs/`，Markdown 内用相对路径 `imgs/xxx.jpg` |
+| 内容语言 | 优先 `translatedContent`（中文）；无译文再退回英文 `content` |
+| 忠实度 | 保留原题 **题目描述、示例（含图）、数据范围/提示**；不删减官方约束；可略去 HTML 噪声（`&nbsp;` 等） |
 
-### 算法标签（文件名后缀）
+### Markdown 结构模板
 
-从题解内容或用户说明中确定，常用：
-
-| 标签 | 适用 |
-|------|------|
-| `广度优先` | BFS、层序、多源最短路 |
-| `深度优先` | DFS、回溯、先序/后序变形 |
-| `动态规划` | DP、状态转移、双遍扫描 |
-| 其它 | `贪心`、`双指针`、`二分` 等——与用户约定一致 |
-
-同一题多种写法 → **多个文件**（如 199 的 BFS / DFS 各一篇），并在文首互相链接「姊妹题解」。
-
-## 输入来源与处理
-
-### A. 截图 / 图片
-
-1. **完整识别**图中文字（含小字、注释、表格、代码块）。
-2. **数学表达式**转为 LaTeX，例如：
-   - 行内：$s_i$、$O(mn)$、$\min(h)$
-   - 块级：$$
-   f(i,j) = 1 + \min(f(i-1,j), f(i,j-1))
-   $$
-3. 识别不清处标 **「待确认」**，勿编造公式。
-4. 图中有 **示意图** 且对理解必要：用文字/ASCII/`mermaid` 复述，或建议用户另存到 `imgs/` 后在文中 `![](imgs/xxx.png)` 引用（题解内相对路径）。
-
-### B. 网页 URL
-
-1. 打开并提取正文（优先 **leetcode.cn** 题解页；社区题解注明来源链接）。
-2. 抓取或转写文内 **公式**（KaTeX/MathJax → LaTeX）、**代码块**、**要点列表**。
-3. 页面中的示意图：下载到当前题目目录 `imgs/`（若体积大或重复多，可用 `imgs/solution/`），Markdown 用相对路径引用。
-4. 遵守网站访问限制；失败时请用户提供截图或粘贴正文。
-
-### C. 已有材料
-
-- 同目录下 **原题** `LeetCode{NNNN}-*.md`：先读题干，题解中的术语、数据范围须与原题一致。
-- 用户附带的 **本地 Java**：可整理进「代码例子」，并注明 `java_test/...` 路径（若存在）。
-
-## 写作原则（核心）
-
-题解是 **读懂截图/网页后的再叙述**，不是 OCR 逐字粘贴。
-
-| 要做 | 不要做 |
-|------|--------|
-| 按「总览 → 为何用该算法 → 关键步骤 → 代码」组织 | 保留网页导航、评论区、无关广告 |
-| 用完整句子解释「为什么对」 | 只堆公式不解释含义 |
-| 保留正确算法与复杂度结论 | 改写官方结论导致错误 |
-| 对照范例的章节粒度（见 [examples.md](examples.md)） | 每题强行套完全相同的小节标题 |
-
-复杂题（如 1162）可拆多级 `##`；简单题（如 199 DFS）「思路和算法」+「代码例子」即可。
-
-## 文档结构模板
-
-### 文首元数据（必填）
+与仓库范例对齐（参见 [examples.md](examples.md)）：
 
 ```markdown
-# {算法名称}（{可选：题号 简称}）
+# {题号}. {中文标题}
 
-- **原题：** [{题号}. {中文标题}](LeetCode{NNNN}-{中文标题}.md)
-- **总览：** [{算法}算法总结](../../算法总结文字/{BFS|DFS|DP}/...)
+**难度：** {简单|中等|困难}
+
+## 题目描述
+
+{题干段落，保留行内 code/加粗}
+
+## 示例
+
+### 示例 1
+
+![示例 1 示意图](imgs/xxx.jpg)
+- **输入：** `...`
+- **输出：** `...`
+- **解释：** ...（若有）
+
+### 示例 2
+...
+
+## 提示（数据范围）
+
+- {约束条目}
 ```
 
-可选行（按需）：
+**难度映射**：`Easy`→简单，`Medium`→中等，`Hard`→困难。
+
+## 子能力：维护题目索引
+
+索引文件路径：**`LeetCode/leetCode题目.md`**（相对于项目根）。只维护其中的 **`## 题目列表`**；`## BFS相关扩展` 等其它章节 **原样保留**。
+
+### 题目列表条目格式
 
 ```markdown
-- **姊妹写法：** 多源 BFS，见 `java_test/.../CodeForLeetCode0542_BFS.java`
-- **姊妹题解：** [深度优先写法](题解-LeetCode0199-深度优先.md)
+- [{题号}. {中文标题}](LeetCode{4位题号}/LeetCode{4位题号}-{中文标题}.md)
+  - {可选备注，2 空格缩进}
 ```
 
-**总览链接**（与 `gd26-algorithm` 现有结构对齐）：
+范例（含备注子项）：
 
-| 算法 | 路径 |
+```markdown
+- [542. 01矩阵](./LeetCode0542/LeetCode0542-01矩阵.md)
+  - 常规解法为BFS，不难实现；
+  - 但还有动态规划的解法，理解需要门槛
+```
+
+### 维护规则（必须遵守）
+
+| 规则 | 说明 |
 |------|------|
-| BFS | `../../算法总结文字/BFS/BFS算法总结.md` |
-| DFS | `../../算法总结文字/DFS/DFS算法总结.md` |
-| DP | `../../算法总结文字/DP/DP思想总结.md` |
+| 扫描范围 | 各 `LeetCode/LeetCode{NNNN}/` 下 `LeetCode{NNNN}-*.md`，**排除** `题解-` 开头文件 |
+| 标题来源 | 优先原题 Markdown 首行 `# 102. 标题`；否则用文件名中的标题 |
+| 链接 | 相对 `leetCode题目.md`，推荐 `LeetCode0102/LeetCode0102-xxx.md`（脚本会去掉 `./`） |
+| 顺序 | **默认**保持索引中已有顺序；**新题**追加在列表末尾 |
+| 备注 | 同一题号下已有 `  - ` 备注 **不得删除** |
+| 重排 | 仅当用户要求或传入 `--sort` / `--sort-index` 时按题号升序重排 |
+| 其它章节 | `## 题目列表` 之后的内容（待解题、TODO 等）**禁止改写** |
 
-若项目无 `算法总结文字/`，删除「总览」行或改为用户指定路径。
+### 何时自动更新索引
 
-### 正文（推荐）
+- 使用 `download_leetcode_problem.py` 抓题成功后 **默认**更新索引。
+- 仅维护目录、不抓题时，单独运行 `update_leetcode_index.py`。
 
-- `## 思路和算法`：问题在算什么（可选 `###`）、为何用该算法、状态/不变式/步骤、与姊妹解法对比（可选）。
-- `## 代码例子`：单个 `java` 代码块，完整可读，与上文一致。
+```bash
+python3 skills/leetcode-1-download-content/scripts/update_leetcode_index.py \
+  --output-dir PROJECT_ROOT
+```
 
-可选收尾：官方题解链接、本地测试类路径、复杂度一句话。
+可选：`--sort` 按题号排序；`--dry-run` 预览不写文件。抓题时可用 `--no-index` 跳过、`--sort-index` 排序。
 
 ## 推荐工作流
 
+### 1. 确认题号与输出根目录
+
+- 题号：用户给的数字或 slug；数字题号走列表 API 解析 slug。
+- 输出根：默认 **当前工作区项目根**（含 `LeetCode/` 或即将创建该目录的仓库，如 `gd26-algorithm`）。
+
+### 2. 优先执行脚本（稳定、可重复）
+
+在技能目录下安装依赖并运行（将 `PROJECT_ROOT` 换成实际项目根）：
+
+```bash
+python3 -m pip install -r skills/leetcode-1-download-content/scripts/requirements.txt
+
+python3 skills/leetcode-1-download-content/scripts/download_leetcode_problem.py \
+  102 \
+  --output-dir PROJECT_ROOT
 ```
-任务进度：
-- [ ] 1. 确认题号 NNNN、算法标签、项目根目录
-- [ ] 2. 读取输入（图 / URL / 文字）并提取要点与公式
-- [ ] 3. 读取同目录原题 LeetCode{NNNN}-*.md（若存在）
-- [ ] 4. 按模板撰写题解（再叙述，非照抄）
-- [ ] 5. 写入 LeetCode/LeetCode{NNNN}/题解-LeetCode{NNNN}-{标签}.md
-- [ ] 6. 若同题另有解法文件，补「姊妹题解」双向链接
-- [ ] 7. 完成检查清单
+
+参数说明：
+
+- 第一个参数：题号（`102`）或 slug（`binary-tree-level-order-traversal`）。
+- `--output-dir`：写入 `PROJECT_ROOT/LeetCode/...` 的目录。
+- `--overwrite`：覆盖已存在的同名 Markdown（**不**自动删 imgs 内旧图）。
+- `--no-index`：不更新 `leetCode题目.md`。
+- `--sort-index`：更新索引时按题号升序重排。
+
+脚本数据源：`leetcode.cn` GraphQL + 题目列表 API；自动下载 `<img src>` 到 `imgs/`；**默认**同步题目列表索引。
+
+### 2b. 仅维护索引（不抓题）
+
+```bash
+python3 skills/leetcode-1-download-content/scripts/update_leetcode_index.py \
+  --output-dir PROJECT_ROOT
 ```
 
-### 1. 确认题号与路径
+适用于：手工新增原题 md 后补索引、批量校正链接/标题、合并磁盘与索引差异。
 
-- 题号补零：`102` → `0102`，`1162` → `1162`。
-- 原题文件 glob：`LeetCode{NNNN}/LeetCode{NNNN}-*.md`（排除 `题解-`）。
+### 3. 对照范例做人工校对（必要时）
 
-### 2–4. 理解与成稿
+脚本输出应已接近范例。生成后 **打开 Markdown 与官方页面对照**，按需微调：
 
-- 从输入中列出：**核心观察、算法名、状态/队列用法、边界、代码骨架**。
-- 标题 `#`：算法为主；若同一文件夹内多篇题解，建议加题号简称，如 `# 广度优先搜索（1162 地图分析）`。
-- 代码：与截图/官方一致；变量名可适度统一；必要处加简短中文注释。
+- 漏掉的独立文本行（如「树的高度是指……」）补入 **题目描述**。
+- 示例图 alt 文案、示例下的补充说明（树结构简述等）可按 [examples.md](examples.md) 风格 **增补**，但勿改写官方输入/输出/约束数值。
+- 上标/下标（如 `2 * 10^4`）按官网显示修正。
 
-### 5. 落盘
+### 4. 无脚本时的备用抓取
 
-- 不覆盖已有题解，除非用户要求 `--overwrite` 或明确说「重写」。
-- 新建前检查是否已有 `题解-LeetCode{NNNN}-{同标签}.md`。
+仅在无法运行 Python 时使用：
+
+1. `POST https://leetcode.cn/graphql/`，查询 `question(titleSlug: $slug) { translatedTitle translatedContent difficulty questionFrontendId }`。
+2. 题号 → slug：`GET https://leetcode.cn/api/problems/all/`，按 `frontend_question_id` 匹配。
+3. 解析 HTML：题干 / `示例 N` / `提示` / `<ul>` 约束；**每个** `<img src>` 下载到 `imgs/`，扩展名取自 URL。
+4. 按上文目录与命名写入文件。
 
 ## 完成检查清单
 
-```
-- [ ] 路径与命名：LeetCode/LeetCode{NNNN}/题解-LeetCode{NNNN}-{算法标签}.md
-- [ ] 文首含「原题」相对链接，且题号/标题与原题 md 一致
-- [ ] 含「思路和算法」与「代码例子」两节（除非用户要求更简）
-- [ ] 数学公式为 LaTeX，行内/块级用法正确
-- [ ] 正文为梳理后的中文，非原始 OCR 乱序文本
-- [ ] 未把原题全文复制进题解
-- [ ] 多解法时已处理姊妹题解/姊妹写法链接
-```
+复制并逐项确认：
 
-## 与 leetcode-1 的配合
-
-| 步骤 | 技能 |
-|------|------|
-| 尚无原题 md | 先用 **leetcode-1-download-content** 抓取原题 |
-| 已有原题，写题解 | 本技能 |
+```
+- [ ] 路径：LeetCode/LeetCode{4位题号}/LeetCode{4位题号}-{中文题}.md
+- [ ] 题号标题行：# {题号}. {中文标题}
+- [ ] 含难度、题目描述、示例、提示（数据范围）
+- [ ] 原题图片均在 imgs/，Markdown 为相对路径 imgs/...
+- [ ] 输入/输出与官网一致（含反引号包裹的代码片段）
+- [ ] 未把题解、思路、代码实现写入本文件
+- [ ] leetCode题目.md 的「题目列表」已含本题链接（除非使用 --no-index）
+- [ ] 原有备注子项与其它 ## 章节未被误删
+```
 
 ## 参考
 
-- 范例全文结构：[examples.md](examples.md)
-- 标签、链接、公式约定：[reference.md](reference.md)
-- 对照仓库：`gd26-algorithm/LeetCode/LeetCode0102`、`LeetCode1162`、`LeetCode0542` 等目录下的 `题解-*.md`
+- 范例目录（只读对照）：`gd26-algorithm/LeetCode/` 下 `LeetCode0102`、`LeetCode0310` 等。
+- 范例说明：[examples.md](examples.md)
+- 接口与脚本细节：[reference.md](reference.md)
